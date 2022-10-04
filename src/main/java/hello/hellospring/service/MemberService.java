@@ -65,10 +65,10 @@ public class MemberService {
     /**
      *  업데이트
      */
-    public void updateMember(Long id, String name, Member member) {
+    public void updateMember(Long id, String title, Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
-                    member.setName(name);
+                    member.setTitle(title);
                 });
         memberRepository.save(member);
     }

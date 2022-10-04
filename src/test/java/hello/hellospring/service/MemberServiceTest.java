@@ -38,7 +38,7 @@ class MemberServiceTest {
 
         //when
         Assertions.assertThat(findMember.getName()).isEqualTo("삼창욱");
-        System.out.println("findMember = " + findMember.getName());
+        System.out.println("findMember = " + findMember);
 
         //then
     }

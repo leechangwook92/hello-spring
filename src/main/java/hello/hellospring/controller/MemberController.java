@@ -35,6 +35,7 @@ public class MemberController {
     public String create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
+        member.setTitle(form.getTitle());
 
         memberService.join(member);
 
@@ -58,11 +59,11 @@ public class MemberController {
     }
     //REquestParam Pathvariable requestbody
 
-    @PostMapping("/members/update/{id}/{name}")
-    public String update(@PathVariable("id") Long id, @PathVariable("name") String name,Member member){
+    @PostMapping("/members/update/{id}/{title}")
+    public String update(@PathVariable("id") Long id, @PathVariable("title") String title,Member member){
         System.out.println("id = " + id);
-        System.out.println("name = " + name);
-        memberService.updateMember(id, name, member);
+        System.out.println("title = " + title);
+        memberService.updateMember(id, title, member);
         return "redirect:/members";
     }
 
