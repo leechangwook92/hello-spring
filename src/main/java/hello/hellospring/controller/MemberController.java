@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // Component로 올려줌
 // 어노테이션 생성시 컨테이너에 올라감
@@ -48,11 +49,21 @@ public class MemberController {
         return "members/memberList";
     }
 
-
-    @DeleteMapping("/members/delete")
-    public String deleteMember(@RequestParam Long id){
+    @PostMapping("/members/delete/{id}")
+    public String deleteMember(@PathVariable("id") Long id) {
+        System.out.println("id = " + id);
         memberService.deleteOne(id);
+
         return "redirect:/";
+    }
+    //REquestParam Pathvariable requestbody
+
+    @PostMapping("/members/update/{id}/{name}")
+    public String update(@PathVariable("id") Long id, @PathVariable("name") String name,Member member){
+        System.out.println("id = " + id);
+        System.out.println("name = " + name);
+        memberService.updateMember(id, name, member);
+        return "redirect:/members";
     }
 
 }

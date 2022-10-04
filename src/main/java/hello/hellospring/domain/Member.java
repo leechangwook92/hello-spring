@@ -2,6 +2,7 @@ package hello.hellospring.domain;
 
 import hello.hellospring.utils.Timestamped;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,10 +12,9 @@ import javax.persistence.*;
 @Entity
 public class Member extends Timestamped{
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column
     private String name;
-
 }

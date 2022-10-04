@@ -3,6 +3,8 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -54,10 +56,20 @@ public class MemberService {
     }
 
     /**
-     * 아이디로 확인
+     * 삭제
      */
-    public Optional<Member> deleteOne(Long memberId){
-        return memberRepository.delete(memberId);
+    public void deleteOne(Long id){
+        memberRepository.deleteById(id);
     }
 
+    /**
+     *  업데이트
+     */
+    public void updateMember(Long id, String name, Member member) {
+        memberRepository.findByName(member.getName())
+                .ifPresent(m -> {
+                    member.setName(name);
+                });
+        memberRepository.save(member);
+    }
 }

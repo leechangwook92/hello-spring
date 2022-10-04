@@ -3,6 +3,12 @@
 <head>
     <title>회원 리스트</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function deleteBtn(){
+            document.forms.action = "/members/delete";
+        }
+    </script>
 
 </head>
 
@@ -17,7 +23,10 @@
                 <tr th:each="member : ${members}">
                     <td th:text="${member.id}"></td>
                     <td th:text="${member.name}"></td>
-                    <td><a href="/members/delete"><input type="hidden" th:value="${member.id}"/>delete</a></td>
+                    <td th:text="${member.CreatedAt}"></td>
+                    <td th:text="${member.ModifiedAt}"></td>
+                    <td><form th:action="@{'/members/delete/'+${member.id}}" th:method="post"><input type="submit" value="delete"></form></td>
+                    <td><form th:action="@{'/members/update/'+${member.id}+'/'+${member.name}}" th:method="post"><input type="submit" value="edit"></form></td>
                 </tr>
             </tbody>
         </table>
